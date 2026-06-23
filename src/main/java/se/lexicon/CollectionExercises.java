@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 // -mvn clean package
+// -java -jar target/arrays-collections.jar
 public class CollectionExercises {
 
     static Scanner scanner = new Scanner(System.in);
@@ -25,15 +26,15 @@ public class CollectionExercises {
         exercise6();
         exercise7();
         exercise8();
-    //    exercise9();
-    //    exercise10();
-    //    exercise11();
-    //    exercise12();
-    //    exercise13();
-    //    exercise14();
-    //    exercise15();
-    //    exercise16();
-    //    exercise17();
+        exercise9();
+        exercise10();
+        //    exercise11();
+        //    exercise12();
+        //    exercise13();
+        //    exercise14();
+        //    exercise15();
+        //    exercise16();
+        //    exercise17();
 
         scanner.close();
     }
@@ -131,6 +132,7 @@ public class CollectionExercises {
         phoneBook.put("Charlie", "0701112222");
         phoneBook.put("David", "0703334444");
 
+        System.out.println("Alice, Bob, Charlie, and David have been added to the phone book.\n");
         System.out.print("Enter a name to search for: ");
         String name = scanner.nextLine();
 
@@ -326,9 +328,8 @@ public class CollectionExercises {
 
         System.out.println("\n----------------------------");
     }
-}
 
-/*
+
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 9 – Choose Your Collection: Submission Tracker
     // You are building a homework submission tracker.
@@ -337,7 +338,8 @@ public class CollectionExercises {
     // - You only need to know whether a student has submitted, not what they submitted
     // - The order submissions arrived in does not matter
     //
-    public static void exercise9() {    System.out.println("Exercise 9 – Choose Your Collection: Submission Tracker\n");
+    public static void exercise9() {
+        System.out.println("Exercise 9 – Choose Your Collection: Submission Tracker\n");
 
         System.out.println("Chosen collection: HashSet");
         System.out.println("Reason: A HashSet does not allow duplicates.");
@@ -358,7 +360,7 @@ public class CollectionExercises {
 
         System.out.println("Processing submissions...\n");
 
-        for (String student: students) {
+        for (String student : students) {
             System.out.println("Submission received from: " + student);
 
             if (!submissions.add(student)) {
@@ -383,7 +385,8 @@ public class CollectionExercises {
     // - This means first in, first out
     // - You need to add people and remove the next person efficiently
     //
-    public static void exercise10() {   System.out.println("Exercise 10 – Choose Your Collection: Concert Queue\n");
+    public static void exercise10() {
+        System.out.println("Exercise 10 – Choose Your Collection: Concert Queue\n");
 
         System.out.println("Chosen collection: Queue");
         System.out.println("Reason: A queue follows FIFO: first in, first out.");
@@ -417,8 +420,8 @@ public class CollectionExercises {
         System.out.println("\n----------------------------");
     }
 
-
-
+}
+/*
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 11 – Choose Your Collection: Student Grades
     //
