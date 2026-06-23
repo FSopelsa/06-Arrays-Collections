@@ -28,13 +28,13 @@ public class CollectionExercises {
         exercise8();
         exercise9();
         exercise10();
-        //    exercise11();
-        //    exercise12();
-        //    exercise13();
-        //    exercise14();
-        //    exercise15();
-        //    exercise16();
-        //    exercise17();
+        exercise11();
+        exercise12();
+        exercise13();
+        exercise14();
+        exercise15();
+        exercise16();
+        exercise17();
 
         scanner.close();
     }
@@ -338,8 +338,7 @@ public class CollectionExercises {
     // - You only need to know whether a student has submitted, not what they submitted
     // - The order submissions arrived in does not matter
     //
-    public static void exercise9() {
-        System.out.println("Exercise 9 – Choose Your Collection: Submission Tracker\n");
+    public static void exercise9() {    System.out.println("Exercise 9 – Choose Your Collection: Submission Tracker\n");
 
         System.out.println("Chosen collection: HashSet");
         System.out.println("Reason: A HashSet does not allow duplicates.");
@@ -385,8 +384,7 @@ public class CollectionExercises {
     // - This means first in, first out
     // - You need to add people and remove the next person efficiently
     //
-    public static void exercise10() {
-        System.out.println("Exercise 10 – Choose Your Collection: Concert Queue\n");
+    public static void exercise10() {   System.out.println("Exercise 10 – Choose Your Collection: Concert Queue\n");
 
         System.out.println("Chosen collection: Queue");
         System.out.println("Reason: A queue follows FIFO: first in, first out.");
@@ -420,61 +418,298 @@ public class CollectionExercises {
         System.out.println("\n----------------------------");
     }
 
-}
-/*
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 11 – Choose Your Collection: Student Grades
-    //
+    // You need to store and look up student grades by name.
+    // - Each student has exactly one grade
+    // - You need to find a student's grade quickly by name
+    // - You also need to print all students sorted by grade from highest to lowest
     //
     public static void exercise11() {   System.out.println("Exercise 11 – Choose Your Collection: Student Grades\n");
 
+        System.out.println("Chosen collection: HashMap");
+        System.out.println("Reason: A HashMap stores data as key-value pairs.");
+        System.out.println("The student name is the key, and the grade is the value.");
+        System.out.println("For sorting, the HashMap entries are copied into an ArrayList and sorted by grade.\n");
+
+        HashMap<String, Integer> grades = new HashMap<>();
+
+        grades.put("Anna", 88);
+        grades.put("Bob", 72);
+        grades.put("Charlie", 95);
+        grades.put("David", 64);
+        grades.put("Emma", 91);
+        grades.put("Fredrik", 79);
+
+        System.out.println("Student grades:");
+        System.out.println(grades);
+
+        System.out.println("\nLooking up Emma's grade quickly by name...");
+        System.out.println("Emma's grade: " + grades.get("Emma"));
+
+        ArrayList<Map.Entry<String, Integer>> sortedGrades = new ArrayList<>(grades.entrySet());
+
+        sortedGrades.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        System.out.println("\nStudents sorted by grade, highest to lowest:");
+
+        for (Map.Entry<String, Integer> entry : sortedGrades) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 12 – Group by First Letter
+    // Given a list of names:
+    // Alice, Bob, Anna, Charlie, Brian, Amanda, Carl
+    // - Group the names by their first letter
+    // - Print each group
     //
-    //
-    public static void exercise12() {   System.out.println("Exercise 12 – Group by First Letter\n");
+    public static void exercise12() {
+        System.out.println("Exercise 12 – Group by First Letter\n");
 
+        ArrayList<String> names = new ArrayList<>(Arrays.asList(
+                "Alice", "Bob", "Anna", "Charlie", "Brian", "Amanda", "Carl"));
+
+        System.out.println("Names:");
+        System.out.println(names);
+
+        System.out.println("\nGrouping names by their first letter...");
+
+        TreeMap<Character, ArrayList<String>> groupedNames = new TreeMap<>();
+
+        for (String name : names) {
+            char firstLetter = name.charAt(0);
+
+            if (!groupedNames.containsKey(firstLetter)) {
+                groupedNames.put(firstLetter, new ArrayList<>());
+            }
+
+            groupedNames.get(firstLetter).add(name);
+        }
+
+        System.out.println("\nGrouped names:");
+
+        for (Map.Entry<Character, ArrayList<String>> entry : groupedNames.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 13 – Most Frequent Word
+    // Given a list of words:
+    // cat, dog, cat, bird, dog, cat, fish, dog, dog
+    // - Find the word that appears most often
+    // - Print it and its count
     //
-    //
-    public static void exercise13() {   System.out.println("Exercise 13 – Most Frequent Word\n");
+    public static void exercise13() {
+        System.out.println("Exercise 13 – Most Frequent Word\n");
 
+        ArrayList<String> words = new ArrayList<>(Arrays.asList(
+                "cat", "dog", "cat", "bird", "dog", "cat", "fish", "dog", "dog"));
+
+        System.out.println("Words:");
+        System.out.println(words);
+
+        System.out.println("\nCounting how many times each word appears...");
+
+        HashMap<String, Integer> wordCounts = new HashMap<>();
+
+        for (String word : words) {
+            if (wordCounts.containsKey(word)) {
+                wordCounts.put(word, wordCounts.get(word) + 1);
+            } else {
+                wordCounts.put(word, 1);
+            }
+        }
+
+        String mostFrequentWord = "";
+        int highestCount = 0;
+
+        for (Map.Entry<String, Integer> entry : wordCounts.entrySet()) {
+            if (entry.getValue() > highestCount) {
+                mostFrequentWord = entry.getKey();
+                highestCount = entry.getValue();
+            }
+        }
+
+        System.out.println("\nMost frequent word: " + mostFrequentWord);
+        System.out.println("Count: " + highestCount);
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 14 – Common Elements
+    // Given two lists:
+    // List A: 1, 3, 5, 7, 9, 11
+    // List B: 3, 6, 9, 12, 15
+    // - Find all elements that appear in both lists
+    // - Each element should appear only once in the result
+    // - Print the common elements
     //
-    //
-    public static void exercise14() {   System.out.println("Exercise 14 – Common Elements\n");
+    public static void exercise14() {
+        System.out.println("Exercise 14 – Common Elements\n");
 
+        ArrayList<Integer> listA = new ArrayList<>(Arrays.asList(
+                1, 3, 5, 7, 9, 11));
+
+        ArrayList<Integer> listB = new ArrayList<>(Arrays.asList(
+                3, 6, 9, 12, 15));
+
+        System.out.println("List A:");
+        System.out.println(listA);
+
+        System.out.println("\nList B:");
+        System.out.println(listB);
+
+        System.out.println("\nFinding numbers that exist in both lists...");
+
+        HashSet<Integer> setA = new HashSet<>(listA);
+        LinkedHashSet<Integer> commonElements = new LinkedHashSet<>();
+
+        for (Integer number : listB) {
+            if (setA.contains(number)) {
+                commonElements.add(number);
+            }
+        }
+
+        System.out.println("\nCommon elements:");
+        System.out.println(commonElements);
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 15 – Two Sum
+    // Given a list of integers and a target number:
+    // Numbers: 2, 7, 11, 15, 4, 6
+    // Target: 13
+    // - Find two numbers in the list that add up to the target and print them
+    // - Solve this without using a nested loop
     //
-    //
-    public static void exercise15() {   System.out.println("Exercise 15 – Two Sum\n");
+    public static void exercise15() {
+        System.out.println("Exercise 15 – Two Sum\n");
 
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(
+                2, 7, 11, 15, 4, 6));
+
+        int target = 13;
+
+        System.out.println("Numbers:");
+        System.out.println(numbers);
+
+        System.out.println("\nTarget: " + target);
+        System.out.println("Using a HashSet to check quickly if the needed number has already been seen.");
+
+        HashSet<Integer> seen = new HashSet<>();
+
+        for (Integer number : numbers) {
+            int neededNumber = target - number;
+
+            if (seen.contains(neededNumber)) {
+                System.out.println("\nPair found: " + neededNumber + " + " + number + " = " + target);
+                System.out.println("\n----------------------------");
+                return;
+            }
+
+            seen.add(number);
+        }
+
+        System.out.println("\nNo pair found.");
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 16 – Second Largest
+    // Given a list of numbers:
+    // 34, 78, 23, 78, 91, 56, 91, 12
+    // - Find the second-largest unique value
+    // - Do not sort the list
     //
-    //
-    public static void exercise16() {   System.out.println("Exercise 16 – Second Largest\n");
+    public static void exercise16() {
+        System.out.println("Exercise 16 – Second Largest\n");
 
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(
+                34, 78, 23, 78, 91, 56, 91, 12));
+
+        System.out.println("Numbers:");
+        System.out.println(numbers);
+
+        System.out.println("\nSearching for the largest and second largest unique values without sorting...");
+
+        Integer largest = null;
+        Integer secondLargest = null;
+
+        for (Integer number : numbers) {
+            if (largest != null && number.equals(largest)) {
+                continue;
+            }
+
+            if (secondLargest != null && number.equals(secondLargest)) {
+                continue;
+            }
+
+            if (largest == null || number > largest) {
+                secondLargest = largest;
+                largest = number;
+            } else if (secondLargest == null || number > secondLargest) {
+                secondLargest = number;
+            }
+        }
+
+        System.out.println("\nLargest unique value: " + largest);
+        System.out.println("Second largest unique value: " + secondLargest);
+
+        System.out.println("\n----------------------------");
     }
 
     //------------------------------------------------------------------------------------------------------------------
     // Exercise 17 – Top 3 Most Frequent
+    // Given a list of words:
+    // java, python, java, c++, python, java, ruby, c++, python, ruby, java
+    // - Find the 3 most frequently occurring words
+    // - Print them in order from most to least frequent
     //
-    //
-    public static void exercise17() {   System.out.println("Exercise 17 – Top 3 Most Frequent\n");
+    public static void exercise17() {
+        System.out.println("Exercise 17 – Top 3 Most Frequent\n");
 
+        ArrayList<String> words = new ArrayList<>(Arrays.asList(
+                "java", "python", "java", "c++", "python", "java",
+                "ruby", "c++", "python", "ruby", "java"));
+
+        System.out.println("Words:");
+        System.out.println(words);
+
+        System.out.println("\nCounting word frequencies...");
+
+        HashMap<String, Integer> wordCounts = new HashMap<>();
+
+        for (String word : words) {
+            if (wordCounts.containsKey(word)) {
+                wordCounts.put(word, wordCounts.get(word) + 1);
+            } else {
+                wordCounts.put(word, 1);
+            }
+        }
+
+        ArrayList<Map.Entry<String, Integer>> sortedWords = new ArrayList<>(wordCounts.entrySet());
+
+        sortedWords.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        System.out.println("\nTop 3 most frequent words:");
+
+        for (int i = 0; i < 3 && i < sortedWords.size(); i++) {
+            Map.Entry<String, Integer> entry = sortedWords.get(i);
+            System.out.println((i + 1) + ". " + entry.getKey() + ": " + entry.getValue());
+        }
+
+        System.out.println("\n----------------------------");
     }
-*/
+
+}
